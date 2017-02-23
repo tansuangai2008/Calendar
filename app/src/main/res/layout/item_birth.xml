@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical" >
+    
+    	<TextView 
+           android:id="@+id/item_birth"
+           android:layout_width="match_parent"
+           android:layout_height="36dp"
+           android:gravity="center"
+           android:textColor="@color/color_theme_font_color_shallow"
+           />
+    	<View
+           android:layout_width="match_parent"
+           android:layout_height="1px"
+			android:visibility="gone"
+           android:background="@color/line_color"/>
+
+</LinearLayout>
