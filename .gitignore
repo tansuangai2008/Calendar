@@ -10,3 +10,5 @@
 /gradle/wrapper/gradle-wrapper.properties
 .idea/vcs.xml
 app/libs/
+/.idea/
+/build/
