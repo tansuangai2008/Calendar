@@ -5,5 +5,5 @@ package com.example.young.calendar;
  */
 
 public class Constants {
-    public static boolean LOGCAT_ENABLE=true;
+    public static boolean LOGCAT_ENABLE=BuildConfig.DEBUG;
 }
