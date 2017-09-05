@@ -360,7 +360,10 @@ public class SelectBirthdayDialog extends DialogFragment implements OnClickListe
 			  int curDay = Math.min(maxDays, day.getCurrentItem() + 1);
               Log.e("current year"+calendar.get(Calendar.YEAR));
 		      Log.e("current month"+calendar.get(Calendar.MONTH));
-		  	if(calendar.get(Calendar.YEAR)==Integer.valueOf(mCurYear)&&mCurMonth-1==calendar.get(Calendar.MONTH)){
+		    Calendar calendarTemp = Calendar.getInstance();
+		    calendarTemp.set(Calendar.YEAR,mCurYear);
+		  	calendarTemp.set(Calendar.MONTH,mCurMonth-1);
+		  	if(calendar.get(Calendar.YEAR)==calendarTemp.get(Calendar.YEAR)&&calendarTemp.get(Calendar.MONTH)==calendar.get(Calendar.MONTH)){
 				Log.e("problem problem problem!!!");
 				setAdapterAndIndex(day,dayAdapter,1,mCurDay,curDay - 1);
 			}else{
@@ -370,9 +373,6 @@ public class SelectBirthdayDialog extends DialogFragment implements OnClickListe
 	}
 
 	private void updateMonths(WheelView year, WheelView month, WheelView day) {
-		Log.e("updateMonths year.getCurrentItem()!!!!!="+year.getCurrentItem());
-		Log.e("updateMonths monthAdapter.getItemsCount()!!!!!="+monthAdapter.getItemsCount());
-		Log.e("updateMonths month.getCurrentItem()!!!!!="+month.getCurrentItem());
 		Calendar calendar = Calendar.getInstance();
 		calendar.set(Calendar.YEAR, calendar.get(Calendar.YEAR) - range + year.getCurrentItem());
 		calendar.set(Calendar.MONTH, month.getCurrentItem());
