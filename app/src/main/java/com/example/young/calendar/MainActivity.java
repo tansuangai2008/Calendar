@@ -52,5 +52,6 @@ public class MainActivity extends AppCompatActivity implements ShowIsHide{
     @Override
     public void checkCurrentTime(String time) {
         Log.e("==="+time);
+        txtView.setText(time);
     }
 }

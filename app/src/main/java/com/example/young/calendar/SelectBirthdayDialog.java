@@ -50,9 +50,7 @@ public class SelectBirthdayDialog extends DialogFragment implements OnClickListe
 		this.context=activity;
 		super.onAttach(activity);
 		try {
-
 			showIsHide = (ShowIsHide) activity;
-
 		} catch (ClassCastException e) {
 			throw new ClassCastException(activity.toString() + "must implement ShowIsHide");
 		}
@@ -153,11 +151,10 @@ public class SelectBirthdayDialog extends DialogFragment implements OnClickListe
 			public void onScrollingFinished(WheelView wheel) {
 				yearAdapter.setCurrentIndex(wheel.getCurrentItem());
 				String currentText = (String) yearAdapter.getItemText(wheel.getCurrentItem());
-				setTextviewSize(currentText, yearAdapter);
+				setTextViewSize(currentText, yearAdapter);
 			}
 		});
 		if(mCurYear==Integer.parseInt(dates[0])-beginRange){
-			Log.e("why why why!");
 			monthAdapter = new DateNumericAdapter(context, 1, mCurMonth, mCurMonth - 1);
 			monthAdapter.setItemResource(R.layout.item_birth);
 			monthAdapter.setItemTextResource(R.id.item_birth);
@@ -166,7 +163,6 @@ public class SelectBirthdayDialog extends DialogFragment implements OnClickListe
 			month.setViewAdapter(monthAdapter);
 			month.setCurrentItem(curMonthIndex - 1);
 		}else if(mCurYear==Integer.parseInt(dates[0])&&tempKey){
-			Log.e("ai ai ai ai!");
 			monthAdapter = new DateNumericAdapter(context, 1, mCurMonth, mCurMonth - 1);
 			monthAdapter.setItemResource(R.layout.item_birth);
 			monthAdapter.setItemTextResource(R.id.item_birth);
@@ -176,7 +172,6 @@ public class SelectBirthdayDialog extends DialogFragment implements OnClickListe
 			month.setCurrentItem(curMonthIndex - 1);
 		}
 		else if((mCurYear!=Integer.parseInt(dates[0])-beginRange)&&curYearIndex==0){
-			Log.e("into into into!!!"+String.valueOf(mCurMonth));
 			int tempMonth;
 			if(previousMonth){
 				tempMonth=mCurMonth+1;
@@ -191,7 +186,6 @@ public class SelectBirthdayDialog extends DialogFragment implements OnClickListe
 			month.setViewAdapter(monthAdapter);
 			month.setCurrentItem(curMonthIndex-tempMonth);
 		}else{
-			Log.e("so so so so!");
 			monthAdapter = new DateNumericAdapter(context, 1, 12, mCurMonth - 1);
 			monthAdapter.setItemResource(R.layout.item_birth);
 			monthAdapter.setItemTextResource(R.id.item_birth);
@@ -221,7 +215,7 @@ public class SelectBirthdayDialog extends DialogFragment implements OnClickListe
 				Log.e("month onScrollingFinished onScrollingFinished");
 				monthAdapter.setCurrentIndex(wheel.getCurrentItem());
 				String currentText = (String) monthAdapter.getItemText(wheel.getCurrentItem());
-				setTextviewSize(currentText, monthAdapter);
+				setTextViewSize(currentText, monthAdapter);
 				updateDays(year, month, day);
 			}
 		});
@@ -243,7 +237,6 @@ public class SelectBirthdayDialog extends DialogFragment implements OnClickListe
 			day.setViewAdapter(dayAdapter);
 			day.setCurrentItem(curDayIndex - 1);
 		}else if((mCurYear!=Integer.parseInt(dates[0])-beginRange)&&curYearIndex==0){
-			Log.e("current current month.getCurrentItem() !!!="+month.getCurrentItem());
 			calendar.set(Calendar.YEAR, calendar.get(Calendar.YEAR) - range + year.getCurrentItem());
 			int tempMonth;
 			if(previousMonth){
@@ -304,14 +297,14 @@ public class SelectBirthdayDialog extends DialogFragment implements OnClickListe
 				Log.e("当前天数选择Item下标=="+String.valueOf(wheel.getCurrentItem()));
 				dayAdapter.setCurrentIndex(wheel.getCurrentItem());
 				String currentText = (String) dayAdapter.getItemText(wheel.getCurrentItem());
-				setTextviewSize(currentText, dayAdapter);
+				setTextViewSize(currentText, dayAdapter);
 			}
 		});
 	}
 
 	private void updateDays(WheelView year, WheelView month, WheelView day) {
       if(year.getCurrentItem()==0&&monthAdapter.getItemsCount()!=12){
-		  Log.e("look look look!!!，see you again!!!");
+		  Log.e("当前年，但是月份不足12个月时");
 		  Calendar calendar = Calendar.getInstance();
 		  calendar.set(Calendar.YEAR, calendar.get(Calendar.YEAR) - range-beginRange + year.getCurrentItem());
 		  Log.e(""+calendar.get(Calendar.YEAR));
@@ -349,22 +342,21 @@ public class SelectBirthdayDialog extends DialogFragment implements OnClickListe
 			  setAdapterAndIndex(day,dayAdapter,1,maxDays,curDay - 1);
 
 	  }else{
-		     Log.e("yes yes yes！！！=="+month.getCurrentItem());
 			  Calendar calendar = Calendar.getInstance();
 			  calendar.set(Calendar.YEAR, calendar.get(Calendar.YEAR) - range-beginRange + year.getCurrentItem());
 			  calendar.set(Calendar.MONTH, month.getCurrentItem());
 		      calendar.set(Calendar.DATE, 1);
 		      calendar.roll(Calendar.DATE, -1);
 			  int maxDays = calendar.get(Calendar.DATE);
-		      Log.e("no no no!="+String.valueOf(maxDays));
+		      Log.e("maxDays maxDays="+String.valueOf(maxDays));
 			  int curDay = Math.min(maxDays, day.getCurrentItem() + 1);
               Log.e("current year"+calendar.get(Calendar.YEAR));
 		      Log.e("current month"+calendar.get(Calendar.MONTH));
-		    Calendar calendarTemp = Calendar.getInstance();
-		    calendarTemp.set(Calendar.YEAR,mCurYear);
-		  	calendarTemp.set(Calendar.MONTH,mCurMonth-1);
+		      Calendar calendarTemp = Calendar.getInstance();
+		      calendarTemp.set(Calendar.YEAR,mCurYear);
+		  	  calendarTemp.set(Calendar.MONTH,mCurMonth-1);
 		  	if(calendar.get(Calendar.YEAR)==calendarTemp.get(Calendar.YEAR)&&calendarTemp.get(Calendar.MONTH)==calendar.get(Calendar.MONTH)){
-				Log.e("problem problem problem!!!");
+				Log.e("需要优化点!!!");
 				setAdapterAndIndex(day,dayAdapter,1,mCurDay,curDay - 1);
 			}else{
 				setAdapterAndIndex(day,dayAdapter,maxDays,curDay - 1);
@@ -381,7 +373,7 @@ public class SelectBirthdayDialog extends DialogFragment implements OnClickListe
 		int maxDays = calendar.get(Calendar.DATE);
 		//年份是今年而且月份数不是不是12个月
 		if (year.getCurrentItem() == range) {
-			Log.e(month.getCurrentItem()+"=====bu bu bu");
+			Log.e("=====bu bu bu"+month.getCurrentItem());
 			if (month.getCurrentItem() >= mCurMonth - 1) {
 				setAdapterAndIndex(month,monthAdapter,mCurMonth,mCurMonth - 1);
 			} else {
@@ -419,16 +411,12 @@ public class SelectBirthdayDialog extends DialogFragment implements OnClickListe
 			}
 			//年份不是今年而且月份不是12个月的时候刷新，让月份恢复12个月，天数恢复满月
 		} else if (year.getCurrentItem() != range) {
-			Log.e("check check check!!!");
-			Log.e("========"+monthAdapter.getItemText(month.getCurrentItem()));
+			Log.e("check check check!!!"+monthAdapter.getItemText(month.getCurrentItem()));
 			Log.e(""+Integer.valueOf(""+dayAdapter.getItemText(day.getCurrentItem())));
 			if(monthAdapter.getItemsCount()==12){
-				Log.e("he he he");
-				Log.e(""+monthAdapter.getItemText(month.getCurrentItem()));
 				setAdapterAndIndex(month,monthAdapter,1,12,month.getCurrentItem());
 				setAdapterAndIndex(day,dayAdapter,maxDays,day.getCurrentItem());
 			}else{
-				Log.e("me me me");
 				setAdapterAndIndex(month,monthAdapter,1,12,month.getCurrentItem());
 				setAdapterAndIndex(day,dayAdapter,1,maxDays,day.getCurrentItem());
 			}
@@ -458,7 +446,7 @@ public class SelectBirthdayDialog extends DialogFragment implements OnClickListe
 	 * @param currentItemText
 	 * @param adapter
 	 */
-	public void setTextviewSize(String currentItemText, DateNumericAdapter adapter) {
+	public void setTextViewSize(String currentItemText, DateNumericAdapter adapter) {
 		ArrayList<View> arrayList = adapter.getArrayList();
 		int size = arrayList.size();
 		String currentText;
