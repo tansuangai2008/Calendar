@@ -69,11 +69,11 @@ public class SelectBirthdayDialog extends DialogFragment implements OnClickListe
 		Dialog dialog = new Dialog(getActivity(),R.style.dialog);
 		LayoutInflater inflater = getActivity().getLayoutInflater();
 		View mMenuView = inflater.inflate(R.layout.birthday, null);
-		year = (WheelView) mMenuView.findViewById(R.id.year);
-		month = (WheelView) mMenuView.findViewById(R.id.month);
-		day = (WheelView) mMenuView.findViewById(R.id.day);
-		btn_submit = (TextView) mMenuView.findViewById(R.id.submit);
-		btn_cancel = (TextView) mMenuView.findViewById(R.id.cancel);
+		year =  mMenuView.findViewById(R.id.year);
+		month =  mMenuView.findViewById(R.id.month);
+		day = mMenuView.findViewById(R.id.day);
+		btn_submit =  mMenuView.findViewById(R.id.submit);
+		btn_cancel =  mMenuView.findViewById(R.id.cancel);
 		btn_submit.setOnClickListener(this);
 		btn_cancel.setOnClickListener(this);
 		dialog.setContentView(mMenuView, new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.MATCH_PARENT));
@@ -458,18 +458,18 @@ public class SelectBirthdayDialog extends DialogFragment implements OnClickListe
 	}
 
 	private class DateNumericAdapter extends NumericWheelAdapter {
-		public DateNumericAdapter(Context context, int minValue, int maxValue,
+		private DateNumericAdapter(Context context, int minValue, int maxValue,
 								  int current) {
 			super(context, minValue, maxValue);
 			setCurrentIndex(current);
 			setMaxValue(maxValue);
 		}
-
+		@Override
 		protected void configureTextView(TextView view) {
 			super.configureTextView(view);
 		}
 	}
-
+	@Override
 	public void onClick(View v) {
 		switch (v.getId())
 		{
@@ -491,6 +491,8 @@ public class SelectBirthdayDialog extends DialogFragment implements OnClickListe
 				break;
 			case R.id.cancel:
 				this.dismiss();
+				break;
+			default:
 				break;
 		}
 	}
