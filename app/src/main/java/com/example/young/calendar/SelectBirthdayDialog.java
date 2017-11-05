@@ -111,7 +111,6 @@ public class SelectBirthdayDialog extends DialogFragment implements OnClickListe
 			curYearIndex=curYearIndex-mCurYear+range;
 			tempKey=true;
 		}
-		Log.e("start=="+curYearIndex);
 		if(String.valueOf(dates[1].charAt(0)).equals("0")){
 			dates[1]=dates[1].replace("0","");
 		}
@@ -126,10 +125,9 @@ public class SelectBirthdayDialog extends DialogFragment implements OnClickListe
 
 		yearAdapter = new DateNumericAdapter(context, mCurYear-range, mCurYear, range-beginRange);
 		yearAdapter.setTextType("年");
-		Log.e("end"+String.valueOf(curYearIndex));
 		yearAdapter.setItemResource(R.layout.item_birth);
 		yearAdapter.setItemTextResource(R.id.item_birth);
-		Log.e("curYearIndex==="+String.valueOf(curYearIndex));
+		Log.e("【curYearIndex】="+String.valueOf(curYearIndex)+"【curYearIndex】="+String.valueOf(curYearIndex));
 		yearAdapter.setCurrentIndex(curYearIndex);
 		year.setViewAdapter(yearAdapter);
 		year.setCurrentItem(curYearIndex);
@@ -294,7 +292,7 @@ public class SelectBirthdayDialog extends DialogFragment implements OnClickListe
 			}
 			@Override
 			public void onScrollingFinished(WheelView wheel) {
-				Log.e("当前天数选择Item下标=="+String.valueOf(wheel.getCurrentItem()));
+				Log.e("【当前天数选择Item下标】="+String.valueOf(wheel.getCurrentItem()));
 				dayAdapter.setCurrentIndex(wheel.getCurrentItem());
 				String currentText = (String) dayAdapter.getItemText(wheel.getCurrentItem());
 				setTextViewSize(currentText, dayAdapter);
@@ -304,21 +302,19 @@ public class SelectBirthdayDialog extends DialogFragment implements OnClickListe
 
 	private void updateDays(WheelView year, WheelView month, WheelView day) {
       if(year.getCurrentItem()==0&&monthAdapter.getItemsCount()!=12){
-		  Log.e("当前年，但是月份不足12个月时");
 		  Calendar calendar = Calendar.getInstance();
 		  calendar.set(Calendar.YEAR, calendar.get(Calendar.YEAR) - range-beginRange + year.getCurrentItem());
 		  Log.e(""+calendar.get(Calendar.YEAR));
-		  Log.e("updateDays当前月份="+mCurMonth+"="+month.getCurrentItem());
+		  Log.e("【当前年，但是月份不足12个月时】 updateDays当前月份="+mCurMonth+"="+month.getCurrentItem());
 		  if(previousMonth){
 			  calendar.set(Calendar.MONTH, month.getCurrentItem()+mCurMonth);
 		  }else{
 			  calendar.set(Calendar.MONTH, month.getCurrentItem()+(mCurMonth-1));
 		  }
-		  Log.e("当前月份==="+calendar.get(Calendar.MONTH));
 		  calendar.set(Calendar.DATE, 1);
 		  calendar.roll(Calendar.DATE, -1);
 		  int maxDays = calendar.get(Calendar.DATE);
-		  Log.e("updateDays当前月份最大天数="+maxDays);
+		  Log.e("【当前月份】"+calendar.get(Calendar.MONTH)+"updateDays当前月份最大天数="+maxDays);
 
 		  if(month.getCurrentItem()==0){
 			  int curDay = Math.min(maxDays, day.getCurrentItem() + 1);
@@ -332,12 +328,11 @@ public class SelectBirthdayDialog extends DialogFragment implements OnClickListe
 
 		  Calendar calendar = Calendar.getInstance();
 		  calendar.set(Calendar.YEAR, calendar.get(Calendar.YEAR) - range-beginRange + year.getCurrentItem());
-		  Log.e("updateDays当前月份="+mCurMonth+"="+month.getCurrentItem());
 		  calendar.set(Calendar.MONTH, month.getCurrentItem()+(mCurMonth-1));
 		  calendar.set(Calendar.DATE, 1);
 		  calendar.roll(Calendar.DATE, -1);
 		  int maxDays = calendar.get(Calendar.DATE);
-		  Log.e("updateDays当前月份最大天数="+maxDays);
+		  Log.e("【当前月份】"+mCurMonth+"="+month.getCurrentItem()+"updateDays当前月份最大天数="+maxDays);
 			  int curDay = Math.min(maxDays, day.getCurrentItem() + 1);
 			  setAdapterAndIndex(day,dayAdapter,1,maxDays,curDay - 1);
 
@@ -348,10 +343,8 @@ public class SelectBirthdayDialog extends DialogFragment implements OnClickListe
 		      calendar.set(Calendar.DATE, 1);
 		      calendar.roll(Calendar.DATE, -1);
 			  int maxDays = calendar.get(Calendar.DATE);
-		      Log.e("maxDays maxDays="+String.valueOf(maxDays));
 			  int curDay = Math.min(maxDays, day.getCurrentItem() + 1);
-              Log.e("current year"+calendar.get(Calendar.YEAR));
-		      Log.e("current month"+calendar.get(Calendar.MONTH));
+              Log.e("【current year】"+calendar.get(Calendar.YEAR)+"【current month】"+calendar.get(Calendar.MONTH)+"【maxDays maxDays】="+String.valueOf(maxDays));
 		      Calendar calendarTemp = Calendar.getInstance();
 		      calendarTemp.set(Calendar.YEAR,mCurYear);
 		  	  calendarTemp.set(Calendar.MONTH,mCurMonth-1);
