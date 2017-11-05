@@ -127,7 +127,7 @@ public class SelectBirthdayDialog extends DialogFragment implements OnClickListe
 		yearAdapter.setTextType("年");
 		yearAdapter.setItemResource(R.layout.item_birth);
 		yearAdapter.setItemTextResource(R.id.item_birth);
-		Log.e("【curYearIndex】="+String.valueOf(curYearIndex)+"【curYearIndex】="+String.valueOf(curYearIndex));
+		Log.e("【curYearIndex】="+String.valueOf(curYearIndex));
 		yearAdapter.setCurrentIndex(curYearIndex);
 		year.setViewAdapter(yearAdapter);
 		year.setCurrentItem(curYearIndex);
