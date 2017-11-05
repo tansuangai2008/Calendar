@@ -18,7 +18,7 @@ package com.example.young.calendar.log;
 
 import android.text.TextUtils;
 
-import com.example.young.calendar.Constants;
+import com.example.young.calendar.BuildConfig;
 
 import java.io.File;
 import java.text.SimpleDateFormat;
@@ -125,7 +125,7 @@ public class Log {
     /**
      * Whether to enable the log
      */
-//    protected static boolean isEnable = true;
+    protected static boolean isEnable = true;
     /**
      * The log dir path
      */
@@ -159,7 +159,7 @@ public class Log {
      * @param msg The message you would like logged.
      */
     public static void d(String tag, String msg) {
-        if (Constants.LOGCAT_ENABLE) {
+        if (BuildConfig.DEBUG) {
             if (tag == null || tag == "") {
                 d(msg);
             } else {
@@ -172,7 +172,7 @@ public class Log {
      * Send a DEBUG log message.
      */
     public static void d(String msg) {
-        if (Constants.LOGCAT_ENABLE) {
+        if (BuildConfig.DEBUG) {
             android.util.Log.d(TAG, buildMessage(TYPE.DEBUG, TAG, msg, null));
         }
     }
@@ -258,7 +258,7 @@ public class Log {
      * @param thr An exception to log
      */
     public static void d(String tag, String msg, Throwable thr) {
-        if (Constants.LOGCAT_ENABLE) {
+        if (BuildConfig.DEBUG) {
             if (tag == null || tag == "") {
                 d(msg, thr);
             } else {
@@ -274,7 +274,7 @@ public class Log {
      * @param thr An exception to log
      */
     public static void d(String msg, Throwable thr) {
-        if (Constants.LOGCAT_ENABLE) {
+        if (BuildConfig.DEBUG) {
             android.util.Log.d(TAG, buildMessage(TYPE.DEBUG, TAG, msg, thr), thr);
         }
     }
@@ -285,7 +285,7 @@ public class Log {
      * @param msg The message you would like logged.
      */
     public static void e(String tag, String msg) {
-        if (Constants.LOGCAT_ENABLE) {
+        if (BuildConfig.DEBUG) {
             if (tag == null || tag == "") {
                 e(msg);
             } else {
@@ -300,7 +300,7 @@ public class Log {
      * @param msg The message you would like logged.
      */
     public static void e(String msg) {
-        if (Constants.LOGCAT_ENABLE) {
+        if (BuildConfig.DEBUG) {
             android.util.Log.e(TAG, buildMessage(TYPE.ERROR, TAG, msg, null));
         }
     }
@@ -312,7 +312,7 @@ public class Log {
      * @param thr An exception to log
      */
     public static void e(String tag, String msg, Throwable thr) {
-        if (Constants.LOGCAT_ENABLE) {
+        if (BuildConfig.DEBUG) {
             if (tag == null || tag == "") {
                 e(msg, thr);
             } else {
@@ -328,7 +328,7 @@ public class Log {
      * @param thr An exception to log
      */
     public static void e(String msg, Throwable thr) {
-        if (Constants.LOGCAT_ENABLE) {
+        if (BuildConfig.DEBUG) {
             android.util.Log.e(TAG, buildMessage(TYPE.ERROR, TAG, msg, thr), thr);
         }
     }
@@ -448,7 +448,7 @@ public class Log {
      * @param msg The message you would like logged.
      */
     public static void i(String tag, String msg) {
-        if (Constants.LOGCAT_ENABLE) {
+        if (BuildConfig.DEBUG) {
             if (tag == null || tag == "") {
                 i(msg);
             } else {
@@ -463,7 +463,7 @@ public class Log {
      * @param msg The message you would like logged.
      */
     public static void i(String msg) {
-        if (Constants.LOGCAT_ENABLE) {
+        if (BuildConfig.DEBUG) {
             android.util.Log.i(TAG, buildMessage(TYPE.INFO, TAG, msg, null));
         }
     }
@@ -475,7 +475,7 @@ public class Log {
      * @param thr An exception to log
      */
     public static void i(String tag, String msg, Throwable thr) {
-        if (Constants.LOGCAT_ENABLE) {
+        if (BuildConfig.DEBUG) {
             if (tag == null || tag == "") {
                 i(msg, thr);
             } else {
@@ -491,7 +491,7 @@ public class Log {
      * @param thr An exception to log
      */
     public static void i(String msg, Throwable thr) {
-        if (Constants.LOGCAT_ENABLE) {
+        if (BuildConfig.DEBUG) {
             android.util.Log.i(TAG, buildMessage(TYPE.INFO, TAG, msg, thr), thr);
         }
     }
@@ -500,7 +500,7 @@ public class Log {
      * is the log enabled?
      */
     public static boolean isEnabled() {
-        return Constants.LOGCAT_ENABLE;
+        return BuildConfig.DEBUG;
     }
 
     /**
@@ -509,7 +509,7 @@ public class Log {
      * @param enabled whether to enable the log
      */
     public static void setEnabled(boolean enabled) {
-        Constants.LOGCAT_ENABLE = enabled;
+        isEnable = enabled;
     }
 
     /**
@@ -589,7 +589,7 @@ public class Log {
      * @param msg The message you would like logged.
      */
     public static void v(String tag, String msg) {
-        if (Constants.LOGCAT_ENABLE) {
+        if (BuildConfig.DEBUG) {
             if (tag == null || tag == "") {
                 v(msg);
             } else {
@@ -604,7 +604,7 @@ public class Log {
      * @param msg The message you would like logged.
      */
     public static void v(String msg) {
-        if (Constants.LOGCAT_ENABLE) {
+        if (BuildConfig.DEBUG) {
             android.util.Log.v(TAG, buildMessage(TYPE.VERBOSE, TAG, msg, null));
         }
     }
@@ -616,7 +616,7 @@ public class Log {
      * @param thr An exception to log
      */
     public static void v(String tag, String msg, Throwable thr) {
-        if (Constants.LOGCAT_ENABLE) {
+        if (BuildConfig.DEBUG) {
             if (tag == null || tag == "") {
                 v(msg, thr);
             } else {
@@ -632,7 +632,7 @@ public class Log {
      * @param thr An exception to log
      */
     public static void v(String msg, Throwable thr) {
-        if (Constants.LOGCAT_ENABLE) {
+        if (BuildConfig.DEBUG) {
             android.util.Log.v(TAG, buildMessage(TYPE.VERBOSE, TAG, msg, thr), thr);
         }
     }
@@ -643,7 +643,7 @@ public class Log {
      * @param thr An exception to log
      */
     public static void w(Throwable thr) {
-        if (Constants.LOGCAT_ENABLE) {
+        if (BuildConfig.DEBUG) {
             android.util.Log.w(TAG, buildMessage(TYPE.WARN, TAG, "", thr), thr);
         }
     }
@@ -654,7 +654,7 @@ public class Log {
      * @param msg The message you would like logged.
      */
     public static void w(String tag, String msg) {
-        if (Constants.LOGCAT_ENABLE) {
+        if (BuildConfig.DEBUG) {
             if (tag == null || tag == "") {
                 w(msg);
             } else {
@@ -669,7 +669,7 @@ public class Log {
      * @param msg The message you would like logged.
      */
     public static void w(String msg) {
-        if (Constants.LOGCAT_ENABLE) {
+        if (BuildConfig.DEBUG) {
             android.util.Log.w(TAG, buildMessage(TYPE.WARN, TAG, msg, null));
         }
     }
@@ -681,7 +681,7 @@ public class Log {
      * @param thr An exception to log
      */
     public static void w(String tag, String msg, Throwable thr) {
-        if (Constants.LOGCAT_ENABLE) {
+        if (BuildConfig.DEBUG) {
             if (tag == null || tag == "") {
                 w(msg, thr);
             } else {
@@ -697,7 +697,7 @@ public class Log {
      * @param thr An exception to log
      */
     public static void w(String msg, Throwable thr) {
-        if (Constants.LOGCAT_ENABLE) {
+        if (BuildConfig.DEBUG) {
             android.util.Log.w(TAG, buildMessage(TYPE.WARN, TAG, msg, thr), thr);
         }
     }

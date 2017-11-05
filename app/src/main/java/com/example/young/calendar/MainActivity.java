@@ -40,7 +40,7 @@ public class MainActivity extends AppCompatActivity implements ShowIsHide{
 //       将当前的Fragment加入到回退堆栈，当用户按返回键，或者通过按帮助框的Close按钮dismiss帮助框是，重新显示提示框。
 //       对于back stack的处理，系统具有一定的智能。例如：执行两次addToStackStack()，实际不会重复压栈。 有例如：注释掉remove()语句，即提示框不消失，而是在帮助框的下面，如右图，由于提示框存在，我们并不需要将提示框键入到back stack，但是在实验中发现是否有addToBackStack()都不会结果有影响，系统能够分析到对象存在，不需要压栈。没有去查源代码，猜测通过mBackStackId比对来进行智能处理。
         ft.addToBackStack(null);
-        if(txtView.getText().toString().contains("出生年月")){
+        if("出生年月".contains(txtView.getText().toString())){
 
         }else {
             selectBirthdayDialog.date = txtView.getText().toString();
